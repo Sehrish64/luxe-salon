@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxe Salon - Premium Hair & Beauty</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Global Styles */
+        :root {
+            --primary: #FF6B6B;
+            --secondary: #4ECDC4;
+            --dark: #2C3E50;
+            --light: #F8F9FA;
+            --cream: #FFF8F0;
+            --text-dark: #333;
+            --text-light: #666;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: var(--text-dark);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--cream);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            top: 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .cta-button {
+            background-color: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+
+        .cta-button:hover {
+            background-color: #e55a5a;
+        }
+
+        /* Mobile Menu */
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 24px;
+            color: var(--dark);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding-top: 80px;
+            margin-top: 70px;
+        }
+
+        .hero-content h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        .hero-content p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 100px 0;
+            background-color: var(--light);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: var(--text-light);
+            font-size: 18px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .service-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .service-content {
+            padding: 25px;
+        }
+
+        .service-content h3 {
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        .service-content p {
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+
+        .service-price {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        /* Booking Section */
+        .booking {
+            padding: 100px 0;
+            background-color: white;
+        }
+
+        .booking-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .booking-form {
+            background: var(--cream);
+            padding: 40px;
+            border-radius: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .calendar {
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .availability {
+            margin-top: 20px;
+        }
+
+        .availability p {
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .time-slot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .time-slot:last-child {
+            border-bottom: none;
+        }
+
+        .time-slot input {
+            margin-right: 10px;
+        }
+
+        .status {
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .available {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .booked {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 100px 0;
+            background-color: var(--light);
+        }
+
+        .testimonial-slider {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .testimonial {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .author-info h4 {
+            color: var(--dark);
+            font-size: 17px;
+            margin-bottom: 2px;
+        }
+
+        .author-info p {
+            color: var(--text-light);
+            font-size: 14px;
+        }
+
+        .testimonial {
+            display: none;
+        }
+
+        .testimonial.active {
+            display: block;
+        }
+
+        .slider-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 18px;
+            margin-top: 25px;
+        }
+
+        .slider-btn {
+            width: 42px;
+            height: 42px;
+            border: none;
+            border-radius: 50%;
+            background-color: var(--dark);
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .slider-btn:hover {
+            background-color: var(--primary);
+        }
+
+        .slider-dots {
+            display: flex;
+            gap: 8px;
+        }
+
+        .slider-dot {
+            width: 11px;
+            height: 11px;
+            border: none;
+            border-radius: 50%;
+            background-color: #ccc;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        .slider-dot.active {
+            background-color: var(--primary);
+        }
+
+        .hero-content {
+            width: 100%;
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .booking-submit {
+            width: 100%;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        .success-message {
+            display: none;
+            margin-top: 20px;
+            padding: 14px;
+            border-radius: 5px;
+            background-color: #d4edda;
+            color: #155724;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        .time-slot label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .time-slot input:disabled {
+            cursor: not-allowed;
+        }
+
+        .time-slot input:disabled + span {
+            color: #999;
+            text-decoration: line-through;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 70px 0 0;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 40px;
+            padding-bottom: 50px;
+        }
+
+        .footer-content h3,
+        .footer-content h4 {
+            margin-bottom: 18px;
+            color: white;
+        }
+
+        .footer-content p,
+        .footer-content li {
+            color: #d5dce4;
+            font-size: 15px;
+        }
+
+        .footer-content ul {
+            list-style: none;
+        }
+
+        .footer-content li {
+            margin-bottom: 10px;
+        }
+
+        .footer-content a {
+            color: #d5dce4;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-content a:hover {
+            color: var(--secondary);
+        }
+
+        .footer-content i {
+            color: var(--secondary);
+            margin-right: 9px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            width: 38px;
+            height: 38px;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background-color: rgba(255,255,255,0.1);
+        }
+
+        .social-links i {
+            margin-right: 0;
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.15);
+            padding: 22px 0;
+            text-align: center;
+        }
+
+        .footer-bottom p {
+            color: #bfc9d4;
+            font-size: 14px;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .booking-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                position: relative;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: calc(100% + 15px);
+                left: -20px;
+                right: -20px;
+                flex-direction: column;
+                background-color: var(--cream);
+                padding: 20px;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                margin: 10px 0;
+            }
+
+            nav .cta-button {
+                display: none;
+            }
+
+            .hero {
+                height: auto;
+                min-height: 100vh;
+                padding: 120px 0 80px;
+            }
+
+            .hero-content h1 {
+                font-size: 36px;
+            }
+
+            .hero-content p {
+                font-size: 17px;
+            }
+
+            .services,
+            .booking,
+            .testimonials {
+                padding: 70px 0;
+            }
+
+            .section-title h2 {
+                font-size: 30px;
+            }
+
+            .section-title p {
+                font-size: 16px;
+            }
+
+            .booking-form {
+                padding: 28px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 31px;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonial {
+                padding: 24px 18px;
+            }
+
+            .testimonial-text {
+                font-size: 16px;
+            }
+
+            .time-slot {
+                gap: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Luxe<span>Salon</span></div>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#booking">Booking</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <a href="#booking" class="cta-button">Book Now</a>
+                <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open menu" aria-expanded="false">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero" id="home">
+            <div class="container hero-content">
+                <h1>Look Beautiful, Feel Confident</h1>
+                <p>Premium hair, beauty and relaxation treatments tailored just for you by our experienced stylists and beauty experts.</p>
+                <a href="#booking" class="cta-button">Book Your Appointment</a>
+            </div>
+        </section>
+
+        <section class="services" id="services">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Our Services</h2>
+                    <p>Everything you need for a complete beauty experience</p>
+                </div>
+                <div class="services-grid">
+                    <article class="service-card">
+                        <div class="service-image" style="background-image: url('https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=900&q=80');"></div>
+                        <div class="service-content">
+                            <h3>Hair Styling</h3>
+                            <p>Precision cuts, blowouts and styling for every hair type and occasion.</p>
+                            <div class="service-price">$45</div>
+                            <a href="#booking" class="cta-button">Book Now</a>
+                        </div>
+                    </article>
+
+                    <article class="service-card">
+                        <div class="service-image" style="background-image: url('https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=900&q=80');"></div>
+                        <div class="service-content">
+                            <h3>Hair Coloring</h3>
+                            <p>Full color, balayage, highlights and gloss treatments with premium products.</p>
+                            <div class="service-price">$85</div>
+                            <a href="#booking" class="cta-button">Book Now</a>
+                        </div>
+                    </article>
+
+                    <article class="service-card">
+                        <div class="service-image" style="background-image: url('https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=900&q=80');"></div>
+                        <div class="service-content">
+                            <h3>Manicure &amp; Pedicure</h3>
+                            <p>Relaxing nail care, shaping, polish and pampering for hands and feet.</p>
+                            <div class="service-price">$55</div>
+                            <a href="#booking" class="cta-button">Book Now</a>
+                        </div>
+                    </article>
+
+                    <article class="service-card">
+                        <div class="service-image" style="background-image: url('https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=900&q=80');"></div>
+                        <div class="service-content">
+                            <h3>Facial Treatment</h3>
+                            <p>Deep-cleansing and hydrating facials designed to refresh and brighten your skin.</p>
+                            <div class="service-price">$65</div>
+                            <a href="#booking" class="cta-button">Book Now</a>
+                        </div>
+                    </article>
+
+                    <article class="service-card">
+                        <div class="service-image" style="background-image: url('https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?auto=format&fit=crop&w=900&q=80');"></div>
+                        <div class="service-content">
+                            <h3>Bridal Makeup</h3>
+                            <p>Elegant, long-lasting makeup for brides and special celebrations.</p>
+                            <div class="service-price">$150</div>
+                            <a href="#booking" class="cta-button">Book Now</a>
+                        </div>
+                    </article>
+
+                    <article class="service-card">
+                        <div class="service-image" style="background-image: url('https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=900&q=80');"></div>
+                        <div class="service-content">
+                            <h3>Spa &amp; Massage</h3>
+                            <p>Soothing spa rituals and massage therapy to help you unwind completely.</p>
+                            <div class="service-price">$75</div>
+                            <a href="#booking" class="cta-button">Book Now</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="booking" id="booking">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Book an Appointment</h2>
+                    <p>Choose your service, preferred date and an available time</p>
+                </div>
+                <div class="booking-content">
+                    <form class="booking-form" id="bookingForm">
+                        <div class="form-group">
+                            <label for="customerName">Your Name</label>
+                            <input type="text" id="customerName" name="customerName" placeholder="Enter your name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="customerPhone">Phone Number</label>
+                            <input type="tel" id="customerPhone" name="customerPhone" placeholder="Enter your phone number" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="serviceSelect">Select Service</label>
+                            <select id="serviceSelect" name="service" required>
+                                <option value="">Choose a service</option>
+                                <option>Hair Styling</option>
+                                <option>Hair Coloring</option>
+                                <option>Manicure &amp; Pedicure</option>
+                                <option>Facial Treatment</option>
+                                <option>Bridal Makeup</option>
+                                <option>Spa &amp; Massage</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="appointmentDate">Appointment Date</label>
+                            <input type="date" id="appointmentDate" name="appointmentDate" required>
+                        </div>
+                        <button type="submit" class="cta-button booking-submit">Confirm Booking</button>
+                        <div class="success-message" id="successMessage" role="status"></div>
+                    </form>
+
+                    <div class="calendar">
+                        <h3>Today&apos;s Availability</h3>
+                        <div class="availability">
+                            <p>Select an available time slot</p>
+                            <div class="time-slot">
+                                <label><input type="radio" name="timeSlot" value="10:00 AM"><span>10:00 AM</span></label>
+                                <span class="status available">Available</span>
+                            </div>
+                            <div class="time-slot">
+                                <label><input type="radio" name="timeSlot" value="11:30 AM"><span>11:30 AM</span></label>
+                                <span class="status available">Available</span>
+                            </div>
+                            <div class="time-slot">
+                                <label><input type="radio" name="timeSlot" value="1:00 PM" disabled><span>1:00 PM</span></label>
+                                <span class="status booked">Booked</span>
+                            </div>
+                            <div class="time-slot">
+                                <label><input type="radio" name="timeSlot" value="2:30 PM"><span>2:30 PM</span></label>
+                                <span class="status available">Available</span>
+                            </div>
+                            <div class="time-slot">
+                                <label><input type="radio" name="timeSlot" value="4:00 PM" disabled><span>4:00 PM</span></label>
+                                <span class="status booked">Booked</span>
+                            </div>
+                            <div class="time-slot">
+                                <label><input type="radio" name="timeSlot" value="5:30 PM"><span>5:30 PM</span></label>
+                                <span class="status available">Available</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="testimonials" id="testimonials">
+            <div class="container">
+                <div class="section-title">
+                    <h2>What Our Clients Say</h2>
+                    <p>Real experiences from people who trust Luxe Salon</p>
+                </div>
+                <div class="testimonial-slider" id="testimonialSlider">
+                    <article class="testimonial active">
+                        <p class="testimonial-text">&ldquo;The stylist understood exactly what I wanted. My hair has never looked this healthy or beautiful!&rdquo;</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar" style="background-image: url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=160&q=80');"></div>
+                            <div class="author-info">
+                                <h4>Sarah Johnson</h4>
+                                <p>Hair Coloring Client</p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="testimonial">
+                        <p class="testimonial-text">&ldquo;A calm, luxurious experience from start to finish. The facial treatment left my skin glowing for days.&rdquo;</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar" style="background-image: url('https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=160&q=80');"></div>
+                            <div class="author-info">
+                                <h4>Emily Davis</h4>
+                                <p>Facial Treatment Client</p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="testimonial">
+                        <p class="testimonial-text">&ldquo;I booked Luxe Salon for my wedding makeup and felt absolutely stunning. Professional, friendly and truly talented.&rdquo;</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar" style="background-image: url('https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=160&q=80');"></div>
+                            <div class="author-info">
+                                <h4>Jessica Miller</h4>
+                                <p>Bridal Makeup Client</p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <div class="slider-controls">
+                        <button class="slider-btn" id="prevSlide" type="button" aria-label="Previous testimonial">
+                            <i class="fa-solid fa-chevron-left"></i>
+                        </button>
+                        <div class="slider-dots" id="sliderDots"></div>
+                        <button class="slider-btn" id="nextSlide" type="button" aria-label="Next testimonial">
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <h3>Luxe Salon</h3>
+                    <p>Premium hair and beauty care in a relaxing, welcoming space. Our team is dedicated to helping you look and feel your very best.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#booking">Book Appointment</a></li>
+                        <li><a href="#testimonials">Testimonials</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Contact Us</h4>
+                    <ul>
+                        <li><i class="fa-solid fa-location-dot"></i>123 Beauty Avenue, City Center</li>
+                        <li><i class="fa-solid fa-phone"></i>(555) 123-4567</li>
+                        <li><i class="fa-solid fa-envelope"></i>hello@luxesalon.com</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Opening Hours</h4>
+                    <ul>
+                        <li>Monday - Friday: 9:00 AM - 8:00 PM</li>
+                        <li>Saturday: 9:00 AM - 6:00 PM</li>
+                        <li>Sunday: 11:00 AM - 5:00 PM</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Luxe Salon. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        menuToggle.addEventListener('click', () => {
+            const isOpen = navLinks.classList.toggle('active');
+            menuToggle.setAttribute('aria-expanded', isOpen);
+        });
+
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                menuToggle.setAttribute('aria-expanded', 'false');
+            });
+        });
+
+        const testimonials = document.querySelectorAll('.testimonial');
+        const dotsContainer = document.getElementById('sliderDots');
+        let currentSlide = 0;
+        let slideTimer;
+
+        testimonials.forEach((_, index) => {
+            const dot = document.createElement('button');
+            dot.className = 'slider-dot' + (index === 0 ? ' active' : '');
+            dot.type = 'button';
+            dot.setAttribute('aria-label', 'Show testimonial ' + (index + 1));
+            dot.addEventListener('click', () => {
+                showSlide(index);
+                restartAutoSlide();
+            });
+            dotsContainer.appendChild(dot);
+        });
+
+        const sliderDots = dotsContainer.querySelectorAll('.slider-dot');
+
+        function showSlide(index) {
+            currentSlide = (index + testimonials.length) % testimonials.length;
+            testimonials.forEach((slide, slideIndex) => {
+                slide.classList.toggle('active', slideIndex === currentSlide);
+            });
+            sliderDots.forEach((dot, dotIndex) => {
+                dot.classList.toggle('active', dotIndex === currentSlide);
+            });
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function restartAutoSlide() {
+            clearInterval(slideTimer);
+            slideTimer = setInterval(nextSlide, 5000);
+        }
+
+        document.getElementById('prevSlide').addEventListener('click', () => {
+            showSlide(currentSlide - 1);
+            restartAutoSlide();
+        });
+
+        document.getElementById('nextSlide').addEventListener('click', () => {
+            nextSlide();
+            restartAutoSlide();
+        });
+
+        restartAutoSlide();
+
+        const bookingForm = document.getElementById('bookingForm');
+        const appointmentDate = document.getElementById('appointmentDate');
+        const successMessage = document.getElementById('successMessage');
+        appointmentDate.min = new Date().toISOString().split('T')[0];
+
+        bookingForm.addEventListener('submit', event => {
+            event.preventDefault();
+
+            const name = document.getElementById('customerName').value.trim();
+            const service = document.getElementById('serviceSelect').value;
+            const selectedSlot = document.querySelector('input[name="timeSlot"]:checked');
+            const slotText = selectedSlot ? ' at ' + selectedSlot.value : '';
+
+            successMessage.textContent = 'Thank you, ' + name + '! Your ' + service + ' appointment is requested for ' + appointmentDate.value + slotText + '. We will call you shortly to confirm.';
+            successMessage.classList.add('show');
+            successMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        });
+    </script>
+</body>
+</html>
